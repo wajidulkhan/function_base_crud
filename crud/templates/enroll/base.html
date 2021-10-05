@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'enroll/css/bootstrap.css' %}"> 
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand">Dashboard</a> 
+    <form class="d-flex">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+{% if messages %}
+    {% for message in messages %}
+    <div{% if message.tags %} class="alert alert-{{ message.tags }} text-center"{% endif %}> <h3>{{ message }}</h3></div> 
+    {% endfor %}
+{% endif %} 
+
+<div class="container"> 
+<h1 class="text-center alert alert-primary" role="alert">Function base CRUD operation</h1> 
+
+    
+{% block contant %}{% endblock contant %}
+
+</div>
+
+<script src="{% static 'enroll/js/bootstrap.js' %}"></script>
+<script src="{% static 'enroll/js/jquery.js' %}"></script>
+<script src="{% static 'enroll/js/popper.js' %}"></script> 
+</body>
+</html>

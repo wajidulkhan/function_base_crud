@@ -1,0 +1,57 @@
+{% extends 'enroll/base.html' %}
+
+{% block contant %} 
+<div class="row">
+<div class="col-sm-4"> 
+    <form action="" method="POST" novalidate>
+        {% csrf_token %} 
+        <h1 class="alert alert-success">Add Student Data</h1>
+        {{form.as_p}}
+        <input class="btn btn-primary" type="submit" value="Submit"> 
+    </form>
+</div>
+<div class="col-sm-8"> 
+<h1 class="alert alert-success">All Student Data</h1> 
+
+{% if data  %} 
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th> 
+        <th scope="col">Password</th> 
+        <th scope="col">Actions</th>  
+        
+      </tr>
+    </thead>
+    <tbody>
+        {% for datas in data %}
+      <tr>
+        <th scope="row">{{datas.id}}</th>
+        <td>{{datas.name}}</td>
+        <td>{{datas.email}}</td>
+        <td>{{datas.password}}</td> 
+        <td>
+        <a class="btn btn-success btn-sm" href="{% url 'updatedata' datas.id%}" role="button">Edit</a> 
+
+        <form action="{% url 'deletedata' datas.id %}" method="POST" class="d-inline">  
+            {% csrf_token %}
+            <button class="btn btn-danger btn-sm" type="submit" >Delete</button>            
+        </form> 
+        </td>  
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% else %}
+
+<h1 class="text-center alert alert-warning">no recode</h1> 
+
+{% endif %}
+</div>
+</div>
+
+
+{% endblock contant %} 
